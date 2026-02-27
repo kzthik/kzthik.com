@@ -13,7 +13,7 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Fade in animation */
+/* Fade in */
 body {
   opacity: 0;
   animation: fadeIn 1.5s ease forwards;
@@ -36,10 +36,10 @@ body::before {
 /* Left Navigation */
 .left-nav {
   position: fixed;
-  left: 60px;
+  left: 80px;
   top: 50%;
   transform: translateY(-50%);
-  height: 70vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -48,31 +48,16 @@ body::before {
 .left-nav a {
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
-  opacity: 0.75;
+  font-size: 17px;
+  opacity: 0.7;
   transition: all 0.3s ease;
-  position: relative;
+  letter-spacing: 1px;
 }
 
+/* Premium hover without underline */
 .left-nav a:hover {
   opacity: 1;
-  transform: translateX(4px);
-}
-
-/* Subtle underline */
-.left-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -4px;
-  width: 0%;
-  height: 1px;
-  background: #fff;
-  transition: width 0.3s ease;
-}
-
-.left-nav a:hover::after {
-  width: 100%;
+  transform: translateX(6px);
 }
 
 /* Center */
@@ -84,9 +69,9 @@ body::before {
 }
 
 .typewrap {
-  font-size: clamp(48px, 7vw, 100px);
+  font-size: clamp(56px, 7vw, 110px);
   font-weight: 200;
-  letter-spacing: 2px;
+  letter-spacing: 4px;
 }
 
 .caret {
@@ -105,16 +90,16 @@ body::before {
     transform: none;
     height: auto;
     align-items: center;
-    margin-top: 40px;
-    gap: 20px;
+    margin-top: 50px;
+    gap: 28px; /* Increased spacing */
   }
 
   .center {
-    margin-top: 40px;
+    margin-top: 60px;
   }
 
   .typewrap {
-    font-size: 48px;
+    font-size: 52px;
     text-align: center;
   }
 }
