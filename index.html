@@ -1,36 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>kzthik</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kzthik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    background: #0e0e0c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wordmark {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 300;
+    font-size: 3.5rem;
+    letter-spacing: 0.06em;
+    color: #f0ede6;
+    user-select: none;
+    min-width: 7ch;
+    text-align: center;
+  }
+</style>
 </head>
 <body>
-  <nav class="left-nav" aria-label="Social links">
-    <a href="https://instagram.com/kzthik" target="_blank" rel="noopener">Instagram</a>
-    <a href="https://facebook.com/kzthik" target="_blank" rel="noopener">Facebook</a>
-    <a href="https://twitter.com/kzthik" target="_blank" rel="noopener">Twitter</a>
-    <a href="https://discord.com/" target="_blank" rel="noopener">Discord</a>
-    <a href="https://github.com/kzthik" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.duolingo.com/profile/kzthik" target="_blank" rel="noopener">Duolingo</a>
-    <a href="https://medium.com/@kzthik" target="_blank" rel="noopener">Medium</a>
-    <a href="https://www.linkedin.com/in/kzthik" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://www.tumblr.com/kzthik" target="_blank" rel="noopener">Tumblr</a>
-    <a href="https://t.me/kzthik" target="_blank" rel="noopener">Telegram</a>
-    <a href="https://www.reddit.com/user/ikzthik" target="_blank" rel="noopener">Reddit</a>
-    <a href="https://www.snapchat.com/add/ikzthik" target="_blank" rel="noopener">Snapchat</a>
-    <a href="https://www.pinterest.com/kzthik" target="_blank" rel="noopener">Pinterest</a>
-    <a href="https://www.youtube.com/@kzthik" target="_blank" rel="noopener">YouTube</a>
-    <a href="https://www.notion.so/" target="_blank" rel="noopener">Notion</a>
-  </nav>
 
-  <main class="center">
-    <div class="typewrap" aria-label="Typing name">
-      <span id="typed" class="typed"></span><span class="caret">▍</span>
-    </div>
-  </main>
+  <span class="wordmark" id="wordmark"></span>
 
-  <script src="script.js"></script>
+<script>
+  const el = document.getElementById('wordmark');
+
+  const TYPE_SPEED = 90;
+  const BACK_SPEED = 60;
+  const PAUSE_FULL = 1800;
+  const PAUSE_STATE = 1000;
+  const PAUSE_BEFORE_RESTART = 500;
+
+  function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  async function typeText(text, from) {
+    for (let i = from.length; i <= text.length; i++) {
+      el.textContent = text.slice(0, i);
+      await sleep(TYPE_SPEED + (Math.random() * 30 - 15));
+    }
+  }
+
+  async function backspace(text, keepN) {
+    for (let i = text.length; i > keepN; i--) {
+      el.textContent = text.slice(0, i - 1);
+      await sleep(BACK_SPEED + (Math.random() * 20 - 10));
+    }
+  }
+
+  async function animate() {
+    while (true) {
+      el.textContent = '';
+      await sleep(300);
+
+      await typeText('kzthik', '');
+      await sleep(PAUSE_FULL);
+
+      await backspace('kzthik', 1);
+      await sleep(180);
+      await typeText('k/thik', 'k');
+      await sleep(PAUSE_STATE);
+
+      await backspace('k/thik', 1);
+      await sleep(180);
+      await typeText('k\\thik', 'k');
+      await sleep(PAUSE_STATE);
+
+      await backspace('k\\thik', 0);
+      await sleep(PAUSE_BEFORE_RESTART);
+    }
+  }
+
+  animate();
+</script>
 </body>
 </html>
